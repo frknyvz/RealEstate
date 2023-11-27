@@ -8,18 +8,19 @@
             <div class="row pt-md-5 pt-4">
                 @foreach (var x in Model)
                 {
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 mb-3">
                         <a href="property-single.html">
                             <div class="box16">
                                 <div class="rentext-listing-category"><span>Satın Al</span><span>@x.categoryName</span></div>
-                                <img class="img-fluid" src="~/starter/assets/images/p1.jpg" alt=""> @* @x.image *@
+                                <img class="img-fluid" style="width:700px;height:200px" src="@x.coverImage" alt="">
                                 <div class="box-content">
                                     <h3 class="title">@x.price ₺</h3>
-                                    <span class="post">@x.district - @x.city</span>
+                                    <span class="post">@x.title</span>
                                 </div>
                             </div>
                         </a>
                     </div>
+                    <br />
                 }
             </div>
         </div>
