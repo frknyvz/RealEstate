@@ -1,19 +1,24 @@
-﻿@model List<ResultCategoryDto>
+﻿@model List<ResultEmployeeDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Admin/Index.cshtml";
+    int sayac = 0;
 }
+
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
         <div class="col-12">
             <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">Kategori Listesi</h6>
+                <h6 class="mb-4">Personel Listesi</h6>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Kategori Adı</th>
+                                <th scope="col">Personel Adı</th>
+                                <th scope="col">Başlık</th>
+                                <th scope="col">Mail</th>
+                                <th scope="col">Telefon Numarası</th>
                                 <th scope="col">Durum</th>
                                 <th scope="col">Güncelle</th>
                                 <th scope="col">Sil</th>
@@ -23,10 +28,14 @@
                         <tbody>
                             @foreach (var x in Model)
                             {
+                                sayac++;
                                 <tr>
-                                    <th scope="row">@x.CategoryID</th>
-                                    <td>@x.CategoryName</td>
-                                    @if (x.CategoryStatus == true)
+                                    <th scope="row">@sayac</th>
+                                    <td>@x.Name</td>
+                                    <td>@x.Title</td>
+                                    <td>@x.Mail</td>
+                                    <td>@x.PhoneNumber</td>
+                                    @if (x.Status == true)
                                     {
                                         <td>Aktif</td>
                                     }
@@ -34,14 +43,14 @@
                                     {
                                         <td>Pasif</td>
                                     }
-                                    <td><a href="/Category/UpdateCategory/@x.CategoryID" class="btn btn-outline-success">GÜNCELLE</a></td>
-                                    <td><a href="/Category/DeleteCategory/@x.CategoryID" class="btn btn-outline-danger">SİL</a></td>
+                                    <td><a href="/Employee/UpdateEmployee/@x.EmployeeID" class="btn btn-outline-success">GÜNCELLE</a></td>
+                                    <td><a href="/Employee/DeleteEmployee/@x.EmployeeID" class="btn btn-outline-danger">SİL</a></td>
                                     <td><a href="#" class="btn btn-outline-info">DETAYLAR</a></td>
                                 </tr>
                             }
                         </tbody>
                     </table>
-                    <a href="/Category/CreateCategory" class="btn btn-outline-secondary">Yeni Kategori Girişi</a>
+                    <a href="/Employee/CreateEmployee" class="btn btn-outline-secondary">Yeni Personel Girişi</a>
                 </div>
             </div>
         </div>

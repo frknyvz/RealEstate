@@ -29,7 +29,7 @@ namespace RealEstate.Controllers
             _categoryRepository.CreateCategory(createCategoryDto);
             return Ok("Kategori Eklemesi Yapıldı.");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             _categoryRepository.DeleteCategory(id);

@@ -56,7 +56,7 @@ namespace RealEstate.Repositories.CategoryRepository
             using (var connection = _context.CreateConnection())
             {
                 var values = await connection.QueryFirstOrDefaultAsync<GetByIdCategoryDto>(query, parameters);
-                return values;
+                return values!;
             }
 
         }
