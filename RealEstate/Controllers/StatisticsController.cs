@@ -45,10 +45,10 @@ namespace RealEstate_API.Controllers
             return Ok(_statisticRepository.AverageProductPriceBySale());
         }
 
-        [HttpGet("AvereageRoomCount")]
-        public IActionResult AvereageRoomCount()
+        [HttpGet("AverageRoomCount")]
+        public IActionResult AverageRoomCount()
         {
-            return Ok(_statisticRepository.AvereageRoomCount());
+            return Ok(_statisticRepository.AverageRoomCount());
         }
 
         [HttpGet("CategoryCount")]
@@ -85,6 +85,12 @@ namespace RealEstate_API.Controllers
         public IActionResult NewestBuildingYear()
         {
             return Ok(_statisticRepository.NewestBuildingYear());
+        }
+
+        [HttpGet("LastProductPrice")]
+        public IActionResult LastProductPrice()
+        {
+            return Ok(_statisticRepository.LastProductPrice());
         }
 
         [HttpGet("OldestBuildingYear")]

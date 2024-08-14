@@ -7,6 +7,8 @@ namespace RealEstate.Repositories.ProductRepository
     {
         Task<List<ResultProductDto>> GetAllProductAsync();
         Task<List<ResultProductWithCategoryDto>> GetAllProductWithCategoryAsync();
+        void ProductDealOfTheDayStatusChangeToTrue(int id);
+        void ProductDealOfTheDayStatusChangeToFalse(int id);
         //void CreateProduct(CreateProductDto productDto);
         //void DeleteProduct(int id);
         //void UpdateProduct(UpdateProductDto productDto);

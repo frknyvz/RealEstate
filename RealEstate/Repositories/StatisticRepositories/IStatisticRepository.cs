@@ -10,13 +10,13 @@
         string EmployeeNameByMaxProductCount();
         string CategoryNameByMaxProductCount();
         decimal AverageProductPriceByRent();
-        decimal AverageProductPriceBySale();
+        double AverageProductPriceBySale();
         string CityNameByMaxProductCount();
         int DifferentCityCount();
         decimal LastProductPrice();
         string NewestBuildingYear();
         string OldestBuildingYear();
         int ActiveEmployeeCount();
-        int AvereageRoomCount();
+        int AverageRoomCount();
     }
 }

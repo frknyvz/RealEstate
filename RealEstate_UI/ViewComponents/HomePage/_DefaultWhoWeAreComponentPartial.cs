@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using RealEstate_UI.Dtos.ServiceDtos;
 using RealEstate_UI.Dtos.WhoWeAreDtos;
 
 namespace RealEstate_UI.ViewComponents.HomePage

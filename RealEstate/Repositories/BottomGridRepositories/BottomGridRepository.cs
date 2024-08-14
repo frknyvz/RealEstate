@@ -50,9 +50,9 @@ namespace RealEstate_API.Repositories.BottomGridRepositories
 
         public async Task<GetByIdBottomGridDto> GetBottomGrid(int id)
         {
-            string query = "Select * From BottomGrid Where BottomGridID = @bottomGridId";
+            string query = "Select * From BottomGrid Where BottomGridID = @bottomGridID";
             var parameters = new DynamicParameters();
-            parameters.Add("@bottomGridId", id);
+            parameters.Add("@bottomGridID", id);
             using (var connection = _context.CreateConnection())
             {
                 var values = await connection.QueryFirstOrDefaultAsync<GetByIdBottomGridDto>(query);

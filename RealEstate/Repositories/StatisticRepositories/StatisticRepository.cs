@@ -53,17 +53,17 @@ namespace RealEstate_API.Repositories.StatisticRepositories
             }
         }
 
-        public decimal AverageProductPriceBySale()
+        public double AverageProductPriceBySale()
         {
             string query = "Select Avg(Price) From Product Where Type='Satılık'";
             using (var connections = _context.CreateConnection())
             {
-                var values = connections.QueryFirstOrDefault<decimal>(query);
+                var values = connections.QueryFirstOrDefault<double>(query);
                 return values;
             }
         }
 
-        public int AvereageRoomCount()
+        public int AverageRoomCount()
         {
             string query = "Select Avg(RoomCount) From ProductDetails";
             using (var connections = _context.CreateConnection())
@@ -128,7 +128,7 @@ namespace RealEstate_API.Repositories.StatisticRepositories
             string query = "Select top(1) Price From Product Order By ProductID Desc";
             using (var connections = _context.CreateConnection())
             {
-                var values = connections.QueryFirstOrDefault<int>(query);
+                var values = connections.QueryFirstOrDefault<decimal>(query);
                 return values;
             }
         }

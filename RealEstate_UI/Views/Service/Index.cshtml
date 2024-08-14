@@ -1,0 +1,51 @@
+﻿@model List<ResultServiceDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Admin/Index.cshtml";
+    int sayac = 0;
+}
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Servis Listesi</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Servis Adı</th>
+                                <th scope="col">Durum</th>
+                                <th scope="col">Güncelle</th>
+                                <th scope="col">Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var x in Model)
+                            {
+                                sayac++;
+                                <tr>
+                                    <th scope="row">@sayac</th>
+                                    <td>@x.ServiceName</td>
+                                    @if (x.ServiceStatus == true)
+                                    {
+                                        <td>Aktif</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Pasif</td>
+                                    }
+                                    <td><a href="/Service/UpdateService/@x.ServiceID" class="btn btn-outline-success">GÜNCELLE</a></td>
+                                    <td><a href="/Service/DeleteService/@x.ServiceID" class="btn btn-outline-danger">SİL</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="/Service/CreateService" class="btn btn-outline-secondary">Yeni Servis Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
