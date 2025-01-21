@@ -80,6 +80,17 @@ namespace RealEstate.Repositories.ProductRepository
             throw new NotImplementedException();
         }
 
+        public async Task<List<ResultLast5ProductWithCategoryDto>> GetLast5ProductAsync()
+        {
+            string query = "Select Top(5) p.ProductID, p.Title, p.Price, p.City, p.District, c.CategoryName, p.AdvertisementDate, p.ProductCategory From Product p Inner Join Category c on c.CategoryID = p.ProductCategory Where Type='Kiralık' Order By ProductID Desc";
+
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<ResultLast5ProductWithCategoryDto>(query);
+                return values.ToList();
+            }
+        }
+
         //public async void CreateCategory(CreateProductDto categoryDto)
         //{
         //    string query = "Insert into Category (CategoryName,CategoryStatus) Values(@categoryName,@categoryStatus)";

@@ -43,6 +43,13 @@ namespace RealEstate.Controllers
             return Ok("İlan Durumu Başarıyla Güncellendi");
         }
 
+        [HttpGet("Last5ProductList")]
+        public async Task<IActionResult> Last5ProductList()
+        {
+            var values = await _productRepository.GetLast5ProductAsync();
+            return Ok(values);
+        }
+
         //[HttpPost]
         //public async Task<IActionResult> CreateCategory(CreateProductDto createCategoryDto)
         //{
