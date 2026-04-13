@@ -1,33 +1,44 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RealEstate_UI.Dtos.CategoryDtos;
 using RealEstate_UI.Dtos.EmployeeDtos;
+using RealEstate_UI.Services;
 using System.Text;
 
 namespace RealEstate_UI.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
 
         private readonly IHttpClientFactory _httpClientFactory;
-
-        public EmployeeController(IHttpClientFactory httpClientFactory)
+        private readonly ILoginService _loginService;
+        public EmployeeController(IHttpClientFactory httpClientFactory, ILoginService loginService)
         {
             _httpClientFactory = httpClientFactory;
+            _loginService = loginService;
+
         }
 
         public async Task<IActionResult> Index()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44394/api/Employees");
+            var user = User.Claims;
+            var userId = _loginService.GetUserId;
 
-            if (responseMessage.IsSuccessStatusCode)
+            var token = User.Claims.FirstOrDefault(x => x.Type == "realestatetoken")?.Value;
+            if (token != null)
             {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultEmployeeDto>>(jsonData); //listeleme işlemi için deserialize kullanılır
-                return View(values);
-            }
+                var client = _httpClientFactory.CreateClient();
+                var responseMessage = await client.GetAsync("https://localhost:44394/api/Employees");
 
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                    var values = JsonConvert.DeserializeObject<List<ResultEmployeeDto>>(jsonData); //listeleme işlemi için deserialize kullanılır
+                    return View(values);
+                }
+            }
             return View();
         }
         [HttpGet]

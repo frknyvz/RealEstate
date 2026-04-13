@@ -50,6 +50,13 @@ namespace RealEstate.Controllers
             return Ok(values);
         }
 
+        [HttpGet("ProductAdvertListByEmployee")]
+        public async Task<IActionResult> ProductAdvertListByEmployee(int id)
+        {
+            var values = await _productRepository.GetProductAdvertListByEmployeeAsync(id);
+            return Ok(values);
+        }
+
         //[HttpPost]
         //public async Task<IActionResult> CreateCategory(CreateProductDto createCategoryDto)
         //{

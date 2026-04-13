@@ -8,9 +8,9 @@ namespace RealEstate_API.Controllers
     [ApiController]
     public class StatisticsController : ControllerBase
     {
-        private readonly IStatisticRepository _statisticRepository;
+        private readonly IStatisticsRepository _statisticRepository;
 
-        public StatisticsController(IStatisticRepository statisticRepository)
+        public StatisticsController(IStatisticsRepository statisticRepository)
         {
             _statisticRepository = statisticRepository;
         }

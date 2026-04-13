@@ -4,11 +4,11 @@ using RealEstate_API.Dtos.EmployeeDtos;
 
 namespace RealEstate_API.Repositories.StatisticRepositories
 {
-    public class StatisticRepository : IStatisticRepository
+    public class StatisticsRepository : IStatisticsRepository
     {
         private readonly Context _context;
 
-        public StatisticRepository(Context context)
+        public StatisticsRepository(Context context)
         {
             _context = context;
         }

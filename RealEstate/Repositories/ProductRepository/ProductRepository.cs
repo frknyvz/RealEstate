@@ -82,11 +82,23 @@ namespace RealEstate.Repositories.ProductRepository
 
         public async Task<List<ResultLast5ProductWithCategoryDto>> GetLast5ProductAsync()
         {
-            string query = "Select Top(5) p.ProductID, p.Title, p.Price, p.City, p.District, c.CategoryName, p.AdvertisementDate, p.ProductCategory From Product p Inner Join Category c on c.CategoryID = p.ProductCategory Where Type='Kiralık' Order By ProductID Desc";
+            string query = "Select Top(5) p.ProductID, p.Title, p.Price, p.City, p.District, c.CategoryName, p.AdvertisementDate, p.ProductCategory From Product p Inner Join Category c on c.CategoryID = p.ProductCategory Where Type='Kiralık' Order By AdvertisementDate Desc";
 
             using (var connection = _context.CreateConnection())
             {
                 var values = await connection.QueryAsync<ResultLast5ProductWithCategoryDto>(query);
+                return values.ToList();
+            }
+        }
+
+        public async Task<List<ResultProductAdvertListWithCategoryByEmployeeDto>> GetProductAdvertListByEmployeeAsync(int id)
+        {
+            string query = "Select ProductID, Title, Price, CoverImage, City, District, CategoryName, Type, Address, DealOfTheDay From Product Inner Join Category On Product.ProductCategory=Category.CategoryID Where EmployeeID=@employeeId";
+            var parameters = new DynamicParameters();
+            parameters.Add("@employeeId", id);
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<ResultProductAdvertListWithCategoryByEmployeeDto>(query, parameters);
                 return values.ToList();
             }
         }

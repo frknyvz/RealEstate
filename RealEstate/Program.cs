@@ -6,6 +6,9 @@ using RealEstate_API.Hubs;
 using RealEstate_API.Repositories.BottomGridRepositories;
 using RealEstate_API.Repositories.ContactRepositories;
 using RealEstate_API.Repositories.EmployeeRepositories;
+using RealEstate_API.Repositories.EstateAgentRepositories.DashboardRepositories.ChartRepositories;
+using RealEstate_API.Repositories.EstateAgentRepositories.DashboardRepositories.LastProductRepositories;
+using RealEstate_API.Repositories.EstateAgentRepositories.DashboardRepositories.StatisticRepositories;
 using RealEstate_API.Repositories.PopularLocationRepositories;
 using RealEstate_API.Repositories.ServiceRepository;
 using RealEstate_API.Repositories.StatisticRepositories;
@@ -26,9 +29,13 @@ builder.Services.AddTransient<IBottomGridRepository, BottomGridRepository>();
 builder.Services.AddTransient<IPopularLocationRepository, PopularLocationRepository>();
 builder.Services.AddTransient<ITestimonialRepository, TestimonialRepository>();
 builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
-builder.Services.AddTransient<IStatisticRepository, StatisticRepository>();
+builder.Services.AddTransient<IStatisticsRepository, StatisticsRepository>();
 builder.Services.AddTransient<IContactRepository, ContactRepository>();
 builder.Services.AddTransient<IToDoListRepository, ToDoListRepository>();
+builder.Services.AddTransient<IStatisticRepository, StatisticRepository>();
+builder.Services.AddTransient<ILast5ProductsRepository, Last5ProductsRepository>();
+builder.Services.AddTransient<IChartRepository, ChartRepository>();
+
 
 builder.Services.AddCors(opt =>
 {
@@ -41,6 +48,8 @@ builder.Services.AddCors(opt =>
     });
 });
 builder.Services.AddSignalR();
+
+builder.Services.AddHttpClient();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
