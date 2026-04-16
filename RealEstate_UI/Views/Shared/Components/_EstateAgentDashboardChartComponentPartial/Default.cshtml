@@ -1,32 +1,24 @@
-﻿ @model List<ResultEstateAgentDashboardChartDto> 
-
-@* @model Tuple<List<ResultEstateAgentDashboardChartDto>,List<ResultEstateAgentDashboardChartDto2>>  *@
+﻿@model List<ResultEstateAgentDashboardChartDto>
 
 <!DOCTYPE html>
 <html>
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    @*     <style>
-    .chart-container {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px; /* Added for spacing */
-    }
-    </style> *@
+    <style>
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px; /* Added for spacing */
+        }
+    </style>
 </head>
 <body>
-    <div class="row g-4 mt-1">
-        <div class="col-sm-12 col-xl-6">
-            <div class="bg-light text-center rounded p-4 mb-3">
-                <canvas id="myChart" style="max-width: 650px"></canvas>
-            </div>
-        </div>
-        <div class="col-sm-12 col-xl-6">
-            <div class="bg-light text-center rounded p-4">
-                <canvas id="myChart1" style="max-width: 650px"></canvas>
-            </div>
-        </div>
+
+    <div class="chart-container">
+        <canvas id="myChart" style="max-width: 500px"></canvas>
+        <canvas id="myChart1" style="max-width: 500px"></canvas>
     </div>
+
     <script>
         var xValuesChart1 = @Html.Raw(Json.Serialize(Model.Select(item => item.City)));
         var yValuesChart1 = @Html.Raw(Json.Serialize(Model.Select(item => item.CityCount)));
@@ -72,12 +64,6 @@
             }
         });
     </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
